@@ -1,80 +1,67 @@
 import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarGroup,
-  SidebarGroupContent,
-  SidebarGroupLabel,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
+  LayoutDashboard, FileSearch, Target, Wand2, Mic, Zap,
+} from "lucide-react";
+import { NavLink } from "@/components/NavLink";
+import { useLocation } from "react-router-dom";
+import {
+  Sidebar, SidebarContent, SidebarGroup, SidebarGroupContent,
+  SidebarMenu, SidebarMenuButton, SidebarMenuItem, useSidebar,
 } from "@/components/ui/sidebar";
-import { Brain, Search, LayoutDashboard, Terminal, Zap, LogOut, Settings } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
 
-const menuItems = [
-  { title: "Overview", icon: LayoutDashboard, path: "/dashboard" },
-  { title: "CV Analyzer", icon: Brain, path: "/dashboard/cv-analyzer" },
-  { title: "Job Matcher", icon: Search, path: "/dashboard/job-matcher" },
-  { title: "Interview Sim", icon: Terminal, path: "/dashboard/interview" },
-  { title: "Cover Letter", icon: Zap, path: "/dashboard/generator" },
+const items = [
+  { title: "Overview", url: "/dashboard", icon: LayoutDashboard },
+  { title: "CV Analyzer", url: "/dashboard/cv-analyzer", icon: FileSearch },
+  { title: "Job Matcher", url: "/dashboard/job-matcher", icon: Target },
+  { title: "Generator", url: "/dashboard/generator", icon: Wand2 },
+  { title: "Interview Simulator", url: "/dashboard/interview", icon: Mic },
 ];
 
 export const DashboardSidebar = () => {
-  const location = useLocation();
+  const { state } = useSidebar();
+  const collapsed = state === "collapsed";
+  const { pathname } = useLocation();
 
   return (
-    <Sidebar className="border-r border-border/50">
-      <SidebarHeader className="p-4">
-        <Link to="/" className="flex items-center gap-2 font-bold text-xl">
-          <div className="h-8 w-8 rounded-lg gold-gradient flex items-center justify-center">
-            <Zap className="h-5 w-5 text-primary-foreground fill-primary-foreground" />
-          </div>
-          <span>Hire<span className="gold-text">Boost</span></span>
-        </Link>
-      </SidebarHeader>
-      
+    <Sidebar collapsible="icon">
       <SidebarContent>
+        <div className="px-4 py-4 flex items-center gap-2">
+          <Zap className="h-5 w-5 text-primary flex-shrink-0" />
+          {!collapsed && <span className="font-bold gold-text text-lg">HireBoost</span>}
+        </div>
         <SidebarGroup>
-          <SidebarGroupLabel className="px-4 text-[10px] uppercase tracking-wider font-bold text-muted-foreground mb-2">Main Menu</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {menuItems.map((item) => (
+              {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild active={location.pathname === item.path} className="px-4">
-                    <Link to={item.path} className="flex items-center gap-3">
-                      <item.icon className={`h-5 w-5 ${location.pathname === item.path ? 'text-primary' : 'text-muted-foreground'}`} />
-                      <span className="text-sm font-medium">{item.title}</span>
-                    </Link>
+                  <SidebarMenuButton asChild>
+                    <NavLink
+                      to={item.url}
+                      end={item.url === "/dashboard"}
+                      className="hover:bg-muted/50"
+                      activeClassName="bg-primary/10 text-primary font-medium"
+                    >
+                      <item.icon className="mr-2 h-4 w-4" />
+                      {!collapsed && <span>{item.title}</span>}
+                    </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-      </SidebarContent>
 
-      <SidebarFooter className="p-4 mt-auto border-t border-border/50">
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton className="px-4 hover:bg-muted/50 rounded-lg">
-              <div className="flex items-center gap-3 text-muted-foreground hover:text-foreground">
-                <Settings className="h-5 w-5" />
-                <span className="text-sm font-medium">Settings</span>
+        {!collapsed && (
+          <div className="mt-auto p-4">
+            <div className="glass-card rounded-lg p-4 text-center">
+              <p className="text-xs text-muted-foreground mb-1">Free Plan</p>
+              <div className="text-sm font-semibold">2/3 analyses used</div>
+              <div className="w-full h-1.5 rounded-full bg-secondary mt-2">
+                <div className="h-full w-2/3 rounded-full gold-gradient" />
               </div>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-          <SidebarMenuItem>
-            <SidebarMenuButton className="px-4 hover:bg-destructive/10 rounded-lg group">
-              <div className="flex items-center gap-3 text-muted-foreground group-hover:text-destructive">
-                <LogOut className="h-5 w-5" />
-                <span className="text-sm font-medium">Log out</span>
-              </div>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
+            </div>
+          </div>
+        )}
+      </SidebarContent>
     </Sidebar>
   );
 };

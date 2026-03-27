@@ -34,6 +34,11 @@
 - **Component Pattern:** Functional components with React Hooks.
 - **Styling:** Utility-first CSS using Tailwind. Avoid custom CSS files unless necessary (prefer `tailwind.config.ts`).
 - **UI Components:** Use Shadcn UI primitives located in `src/components/ui/`.
+- **Premium Design System:**
+    - **Palette:** "Obsidian Dark Mode" (`hsl(240 10% 4%)`) with "Champagne Gold" accents (`hsl(43 96% 64%)`).
+    - **Effects:** Heavy use of `premium-glass` utilities, sub-pixel borders, and subtle gold glows.
+    - **Typography:** `Geist` for headings (sophisticated tracking), `Inter` for body text.
+    - **Motion:** Micro-interactions (hover transforms, shimmer effects) should be subtle but consistent across all buttons and cards.
 - **Type Safety:** Strict TypeScript usage for all components, hooks, and utilities.
 - **Validation:** Use Zod schemas for form validation and API data structures.
 - **Routing:** Declarative routing using `react-router-dom` in `App.tsx`.

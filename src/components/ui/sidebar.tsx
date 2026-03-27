@@ -216,7 +216,7 @@ const Sidebar = React.forwardRef<
 });
 Sidebar.displayName = "Sidebar";
 
-const SidebarTrigger = React.forwardRef<React.ElementRef<typeof Button>, React.ComponentProps<typeof Button>>(
+const SidebarTrigger = React.forwardRef<HTMLButtonElement, React.ComponentProps<typeof Button>>(
   ({ className, onClick, ...props }, ref) => {
     const { toggleSidebar } = useSidebar();
 

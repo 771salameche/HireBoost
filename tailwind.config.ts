@@ -13,6 +13,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
+        heading: ["Geist Variable", "Inter", "system-ui", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -78,8 +79,15 @@ export default {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "pulse-gold": {
-          "0%, 100%": { boxShadow: "0 0 20px -5px hsl(43 72% 52% / 0.3)" },
-          "50%": { boxShadow: "0 0 30px -5px hsl(43 72% 52% / 0.5)" },
+          "0%, 100%": { boxShadow: "0 0 20px -5px hsl(43 96% 64% / 0.3)" },
+          "50%": { boxShadow: "0 0 30px -5px hsl(43 96% 64% / 0.5)" },
+        },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
         },
       },
       animation: {
@@ -87,6 +95,8 @@ export default {
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.5s ease-out forwards",
         "pulse-gold": "pulse-gold 3s ease-in-out infinite",
+        float: "float 6s ease-in-out infinite",
+        shimmer: "shimmer 2s linear infinite",
       },
     },
   },

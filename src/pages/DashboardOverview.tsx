@@ -1,78 +1,65 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Brain, Search, Terminal, Zap, TrendingUp, Users, CheckCircle2 } from "lucide-react";
+import { motion } from "framer-motion";
+import { TrendingUp, FileText, Target, Lightbulb } from "lucide-react";
+import { Progress } from "@/components/ui/progress";
 
-const stats = [
-  { title: "CV Score", value: "85/100", icon: Brain, trend: "+5%" },
-  { title: "Job Matches", value: "12", icon: Search, trend: "+2 new" },
-  { title: "Interviews", value: "3", icon: Terminal, trend: "Upcoming" },
-  { title: "Applications", value: "24", icon: CheckCircle2, trend: "4 active" },
+const cards = [
+  { title: "CV Score", value: "78/100", icon: FileText, change: "+5 from last", progress: 78 },
+  { title: "Job Match", value: "65%", icon: Target, change: "3 jobs matched", progress: 65 },
+  { title: "Last Analysis", value: "2h ago", icon: TrendingUp, change: "Resume_v3.pdf" },
+  { title: "Tips Available", value: "12", icon: Lightbulb, change: "3 high priority" },
 ];
 
-const DashboardOverview = () => {
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">Dashboard Overview</h1>
-        <p className="text-muted-foreground">Welcome back! Here's what's happening with your career boost.</p>
-      </div>
+const tips = [
+  "Add measurable achievements to your work experience section.",
+  "Include relevant keywords from target job descriptions.",
+  "Shorten your summary to 2-3 impactful sentences.",
+  "Add links to your portfolio or GitHub profile.",
+  "Consider adding a skills section with proficiency levels.",
+];
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        {stats.map((stat) => (
-          <Card key={stat.title} className="glass-card">
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">{stat.title}</CardTitle>
-              <stat.icon className="h-4 w-4 text-primary" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs text-primary flex items-center mt-1">
-                <TrendingUp className="h-3 w-3 mr-1" />
-                {stat.trend}
-              </p>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card className="glass-card">
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="flex items-center gap-4">
-                  <div className="h-2 w-2 rounded-full bg-primary" />
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">CV analyzed for "Senior React Developer"</p>
-                    <p className="text-xs text-muted-foreground">2 hours ago</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-        <Card className="glass-card">
-          <CardHeader>
-            <CardTitle>Upcoming Interviews</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 p-3 rounded-lg bg-primary/5 border border-primary/10">
-                <div className="h-10 w-10 rounded gold-gradient flex items-center justify-center text-primary-foreground font-bold">G</div>
-                <div className="flex-1">
-                  <p className="text-sm font-medium">Google - Frontend Engineer</p>
-                  <p className="text-xs text-muted-foreground">Tomorrow, 10:00 AM</p>
-                </div>
-                <Zap className="h-4 w-4 text-primary" />
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+const DashboardOverview = () => (
+  <div className="space-y-8">
+    <div>
+      <h1 className="text-2xl font-bold">Welcome back, <span className="gold-text">John</span></h1>
+      <p className="text-muted-foreground text-sm mt-1">Here's your career dashboard overview.</p>
     </div>
-  );
-};
+
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {cards.map((c, i) => (
+        <motion.div
+          key={c.title}
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: i * 0.1 }}
+          className="glass-card rounded-xl p-5"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <span className="text-sm text-muted-foreground">{c.title}</span>
+            <c.icon className="h-4 w-4 text-primary" />
+          </div>
+          <div className="text-2xl font-bold">{c.value}</div>
+          {c.progress !== undefined && (
+            <Progress value={c.progress} className="mt-3 h-1.5 [&>div]:gold-gradient" />
+          )}
+          <p className="text-xs text-muted-foreground mt-2">{c.change}</p>
+        </motion.div>
+      ))}
+    </div>
+
+    <div className="glass-card rounded-xl p-6">
+      <h2 className="text-lg font-semibold mb-4">Improvement Tips</h2>
+      <ul className="space-y-3">
+        {tips.map((t, i) => (
+          <li key={i} className="flex items-start gap-3 text-sm text-muted-foreground">
+            <span className="w-6 h-6 rounded-full gold-gradient flex items-center justify-center text-xs text-primary-foreground font-bold flex-shrink-0 mt-0.5">
+              {i + 1}
+            </span>
+            {t}
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+);
 
 export default DashboardOverview;

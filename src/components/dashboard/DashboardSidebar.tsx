@@ -1,5 +1,5 @@
 import {
-  LayoutDashboard, FileSearch, Target, Wand2, Mic, Zap,
+  LayoutDashboard, FileSearch, Target, Wand2, Mic, Zap, BookOpen,
 } from "lucide-react";
 import { NavLink } from "@/components/NavLink";
 import { useLocation } from "react-router-dom";
@@ -12,6 +12,7 @@ const items = [
   { title: "Overview", url: "/dashboard", icon: LayoutDashboard },
   { title: "CV Analyzer", url: "/dashboard/cv-analyzer", icon: FileSearch },
   { title: "Job Matcher", url: "/dashboard/job-matcher", icon: Target },
+  { title: "Skill Gap Roadmap", url: "/dashboard/skill-gap", icon: BookOpen },
   { title: "Generator", url: "/dashboard/generator", icon: Wand2 },
   { title: "Interview Simulator", url: "/dashboard/interview", icon: Mic },
 ];

@@ -11,6 +11,7 @@ import CVAnalyzer from "./pages/CVAnalyzer";
 import JobMatcher from "./pages/JobMatcher";
 import Generator from "./pages/Generator";
 import InterviewSimulator from "./pages/InterviewSimulator";
+import SkillGapRoadmap from "./pages/SkillGapRoadmap";
 
 const queryClient = new QueryClient();
 
@@ -28,6 +29,7 @@ const App = () => (
             <Route path="job-matcher" element={<JobMatcher />} />
             <Route path="generator" element={<Generator />} />
             <Route path="interview" element={<InterviewSimulator />} />
+            <Route path="skill-gap" element={<SkillGapRoadmap />} />
           </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>

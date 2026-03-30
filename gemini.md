@@ -21,7 +21,7 @@
 - `src/pages/`: High-level route components.
     - `Index.tsx`: Landing page.
     - `DashboardLayout.tsx`: Shared layout for all dashboard-related features.
-    - `CVAnalyzer.tsx`, `JobMatcher.tsx`, `Generator.tsx`, `InterviewSimulator.tsx`: Feature-specific dashboard pages.
+    - `CVAnalyzer.tsx`, `JobMatcher.tsx`, `SkillGapRoadmap.tsx`, `Generator.tsx`, `InterviewSimulator.tsx`: Feature-specific dashboard pages.
 - `src/components/`:
     - `ui/`: Low-level, reusable UI components (Shadcn UI).
     - `landing/`: Landing page specific sections.
@@ -47,7 +47,7 @@
 ## Active Context
 - **Landing Page:** Fully implemented with Hero, Features, How It Works, Testimonials, and Pricing sections.
 - **Dashboard:** Core layout implemented with a sidebar navigation.
-- **Core Features:** Implementation in progress for CV Analyzer, Job Matcher, Application Generator, and Interview Simulator.
+- **Core Features:** Implementation in progress for CV Analyzer, Job Matcher, Skill Gap Roadmap, Application Generator, and Interview Simulator.
 - **Testing:** Vitest environment configured with sample tests.
 
 ## Maintenance Rule
